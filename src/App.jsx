@@ -1,9 +1,10 @@
+import { RouterProvider } from 'react-router-dom';
+import { router } from './router.jsx';
+
 function App() {
   return (
     <>
-      <div className="container h-screen flex justify-center items-center">
-        <h2 className="text-4xl text-blue-500">Hello World !</h2>
-      </div>
+      <RouterProvider router={router} />
     </>
   );
 }
