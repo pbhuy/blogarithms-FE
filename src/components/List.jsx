@@ -2,27 +2,25 @@ import { useEffect, useState } from 'react';
 import Card from './Card';
 import Pagination from './Pagination';
 import Category from './Category';
+import Sidebar from './Sidebar';
+import axiosClient from '../apis/axios';
 
 function List() {
   const [blogs, setBlogs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const pageSize = 12;
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('');
   const [activeCategory, setActiveCategory] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function fetchBlogs() {
       setLoading(true);
-      await new Promise((resolve) => setTimeout(resolve, 3000));
-      let url = `http://localhost:8080/api/blog?page=${currentPage}&size=${pageSize}`;
-      if (selectedCategory) url += `&term=${selectedCategory}`;
       try {
-        const res = await fetch(url);
-        const data = await res.json();
-        setTotalPages(data.pagination.totalPages);
-        setBlogs(data.data);
+        const res = await axiosClient.get(`/blog?page=${currentPage}&size=${pageSize}&term=${selectedCategory}`);
+        setTotalPages(res.pagination.totalPages);
+        setBlogs(res.data);
       } catch (error) {
         console.error('Error fetching blogs:', error);
       } finally {
@@ -59,7 +57,10 @@ function List() {
             <div className="loader"></div>
           </div>
         ) : (
-          <Card blogs={blogs} />
+          <div>
+            <Card blogs={blogs} />
+            <Sidebar />
+          </div>
         )}
       </div>
 
