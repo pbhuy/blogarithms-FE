@@ -2,10 +2,9 @@ import { FaUser } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 
 function Card({ blogs }) {
-  const filteredBlog = blogs;
   return (
     <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
-      {filteredBlog.map((blog) => (
+      {blogs.map((blog) => (
         <Link key={blog.id} className="p-5 shadow-lg rounded cursor-pointer">
           <div>
             <img className="w-full" src={blog.image} alt={blog.id} />
