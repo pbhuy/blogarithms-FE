@@ -19,7 +19,7 @@ function List() {
       setLoading(true);
       try {
         const res = await axiosClient.get(`/blog?page=${currentPage}&size=${pageSize}&term=${selectedCategory}`);
-        setTotalPages(res.pagination.totalPages);
+        setTotalPages(res.pagination.total_pages);
         setBlogs(res.data);
       } catch (error) {
         console.error('Error fetching blogs:', error);
@@ -57,7 +57,7 @@ function List() {
             <div className="loader"></div>
           </div>
         ) : (
-          <div>
+          <div className="flex flex-col lg:flex-row gap-12">
             <Card blogs={blogs} />
             <Sidebar />
           </div>

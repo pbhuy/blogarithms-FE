@@ -5,7 +5,7 @@ function Card({ blogs }) {
   return (
     <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
       {blogs.map((blog) => (
-        <Link key={blog.id} className="p-5 shadow-lg rounded cursor-pointer">
+        <Link to={`/blog/${blog.id}`} key={blog.id} className="p-5 shadow-lg rounded cursor-pointer">
           <div>
             <img className="w-full" src={blog.image} alt={blog.id} />
           </div>

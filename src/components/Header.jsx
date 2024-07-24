@@ -6,7 +6,7 @@ function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const nav = [
     { path: '/', link: 'Home' },
-    { path: '/blogs', link: 'Blogs' },
+    { path: '/blog', link: 'Blogs' },
     { path: '/about', link: 'About' },
     { path: '/contact', link: 'Contact' },
   ];
